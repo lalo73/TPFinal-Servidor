@@ -2,15 +2,15 @@ package server;
 import java.util.*;
 
 public class UserAccount  {
-         private User user;
+         private User userAccount;
          private ArrayList<Email>userEmail;
          
          
-		public User getUser() {
-			return user;
+		public User getUserAccount() {
+			return userAccount;
 		}
-		public void setUser(User user) {
-			this.user = user;
+		public void setUserAccount(User user) {
+			this.userAccount = user;
 		}
 		public ArrayList<Email> getUserEmail() {
 			return userEmail;
@@ -22,7 +22,8 @@ public class UserAccount  {
 		
 		public UserAccount(User user ) {
 			super();
-			this.user = user;
+			this.userAccount = user;
+			// CREATION OF AN EMPTY EMAIL LIST..
 			this.userEmail = new ArrayList<Email>();
 		}
          

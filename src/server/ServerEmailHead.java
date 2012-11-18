@@ -1,9 +1,9 @@
 package server;
 import java.util.*;
 
-public class EmailHead  {
+public class ServerEmailHead  {
     private String subject;
-    private Date date;
+    private Calendar date;
     private String sender;
     private String reciver;
     
@@ -11,13 +11,16 @@ public class EmailHead  {
 	public String getSubject() {
 		return subject;
 	}
+	public void setReciver(String reciver){
+		this.reciver = reciver;
+	}
 	public void setSubject(String subject) {
 		this.subject = subject;
 	}
-	public Date getDate() {
+	public Calendar getDate() {
 		return date;
 	}
-	public void setDate(Date date) {
+	public void setDate(Calendar date) {
 		this.date = date;
 	}
 	public String getSender() {
@@ -29,13 +32,7 @@ public class EmailHead  {
 	public String getReciver() {
 		return reciver;
 	}
-	public void setReciver(String reciver) {
-		this.reciver = reciver;
-	}
-	
-	
-	public EmailHead(String subject, Date date, String sender, String reciver) {
-		super();
+	public ServerEmailHead(String reciver,String subject,Calendar date, String sender) {
 		this.subject = subject;
 		this.date = date;
 		this.sender = sender;

@@ -26,9 +26,9 @@ public class Server {
 	}
 	
 	@SuppressWarnings("null")
-	private ArrayList<EmailHead> headsOfEmails(UserAccount u){
-		ArrayList<EmailHead>h = null;
-		for (Email e : u.getUserEmail()){
+	private ArrayList<ServerEmailHead> headsOfEmails(UserAccount u){
+		ArrayList<ServerEmailHead>h = null;
+		for (ServerEmail e : u.getUserEmail()){
 			h.add(e.getHead());
 		}
 		return h;
@@ -36,14 +36,14 @@ public class Server {
 	
 	private UserAccount findUser(String userName) throws Exception{
 		for(UserAccount u : this.getUsers()){
-			if (u.getUserAccount().getUserName().equals(userName)){
+			if (u.getUserAccount().getUserName() == userName){
 				return u;		
 			}
 		}
       	throw new Exception ("User doesn't exist");
 	
 	}
-	public ArrayList<Email> sendEmailWithPOP3(String user, boolean clearList) throws Exception{
+	public ArrayList<ServerEmail> sendEmailWithPOP3(String user, boolean clearList) throws Exception{
 		/* send all Email
 		 */
 		UserAccount u = this.findUser(user);
@@ -54,20 +54,20 @@ public class Server {
 		
 	}
 	
-	public ArrayList<EmailHead> sendEmailWithIMAP(String username) throws Exception{
+	public ArrayList<ServerEmailHead> sendEmailWithIMAP(String username) throws Exception{
 		/* send all Email heads */
 		 return    this.headsOfEmails(this.findUser(username));
 		      }
 	
-	public Email sendEmail(EmailHead h,String user) throws Exception{
+	public ServerEmail sendEmail(ServerEmailHead h,String user) throws Exception{
 		/* this method must return an Email
 		 * only works with IMAP protocol
 		 */
-		return this.findUser(user).sendEmail(h);
+		return this.findUser(user).sendEmailComplete(h);
 		
 	}
 	
-	public void recivedAndSend(Email h) throws Exception{
+	public void recivedAndSend(ServerEmail h) throws Exception{
 		/*this method recive an Email and search in the list of users 
 		 * if exist, this method will add the Email to the list of Emails from the user
 		 */

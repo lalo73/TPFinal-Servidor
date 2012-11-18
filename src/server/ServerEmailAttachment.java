@@ -1,6 +1,6 @@
 package server;
 
-public class Attachment {
+public class ServerEmailAttachment {
 	String fileName;
 	String file;
 	
@@ -19,7 +19,7 @@ public class Attachment {
 	}
 	
 	
-	public Attachment(String fileName, String file) {
+	public ServerEmailAttachment(String fileName, String file) {
 		super();
 		this.fileName = fileName;
 		this.file = file;

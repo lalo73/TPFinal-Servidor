@@ -28,5 +28,16 @@ public class UserAccount  {
 		}
          
          
+         public void clearList(){
+        	 this.getUserEmail().removeAll(this.getUserEmail());
+         }
          
+         public Email sendEmail(EmailHead h) throws Exception{
+        	 for (Email e : this.getUserEmail()){
+        		 if (e.getHead() == h){
+        			 return e;
+        		 }
+        	 }
+			throw new Exception("Email doesn't exist");
+         }
 }

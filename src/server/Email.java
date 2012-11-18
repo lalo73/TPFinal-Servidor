@@ -35,8 +35,4 @@ public class Email  {
 	public EmailHead getHead() {
 		return head;
 	}
-
-	
-     
-	
 }

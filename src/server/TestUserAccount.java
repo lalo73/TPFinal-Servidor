@@ -2,7 +2,7 @@ package server;
 
 import static org.junit.Assert.*;
 import java.util.*;
-
+import java.util.Calendar;
 import org.junit.Before;
 import org.junit.Test;
 import static org.mockito.Mockito.*;
@@ -22,8 +22,7 @@ public class TestUserAccount {
 		ArrayList<ServerEmailAttachment> at = new ArrayList<ServerEmailAttachment>();
 		ArrayList<ServerEmail> em = new ArrayList<ServerEmail>();
 		//ArrayList<UserAccount>uas = new ArrayList<UserAccount>();
-		Date d;
-		d = new Date();
+		Calendar d =  Calendar.getInstance();
 		a = mock(ServerEmailAttachment.class);
 		when(a.getFile()).thenReturn("hi");
 		when(a.getFileName()).thenReturn("aName");

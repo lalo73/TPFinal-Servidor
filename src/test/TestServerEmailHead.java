@@ -1,22 +1,22 @@
-package server;
+package test;
 
-import static org.junit.Assert.*;
+import server.*;
 import org.junit.Before;
 import org.junit.Test;
-import static org.mockito.Mockito.*;
+import static org.junit.Assert.*;
 import java.util.Calendar;
 
 public class TestServerEmailHead {
 	ServerEmailHead eh;
 	Calendar d;
 	
-	@SuppressWarnings("static-access")
+
 	@Before
 	public void setUp(){
-		d = mock (Calendar.class);
-		when(d.DAY_OF_MONTH).thenReturn(30);
-		when(d.MONTH).thenReturn(9);
-		when(d.YEAR).thenReturn(2012);
+		d = Calendar.getInstance();
+		d.set(Calendar.YEAR,2009);
+		d.set(Calendar.MONTH, 9);
+		d.set(Calendar.DAY_OF_MONTH,30);
 		eh = new ServerEmailHead("Jfflores90@gmail.com","subject",d,"lalo73@gmail.com");
 	}
 
@@ -32,11 +32,15 @@ public class TestServerEmailHead {
     public void testgetSubject(){
     	assertEquals(eh.getSubject(),"subject");
     }
-    @SuppressWarnings("static-access")
+    
+
 	@Test
     public void testgetDate(){
-		assertEquals(eh.getDate().DAY_OF_MONTH,30);
-		assertEquals(eh.getDate().MONTH,9);
-		assertEquals(eh.getDate().YEAR,2012);
-    }
+		assertEquals(eh.getDate(),d);
+		assertEquals(eh.getDate().get(Calendar.YEAR),2009);
+		assertEquals(eh.getDate().get(Calendar.DAY_OF_MONTH),30);
+		assertEquals(eh.getDate().get(Calendar.MONTH),9);
+		
+		}
+   
 }

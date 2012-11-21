@@ -1,8 +1,8 @@
-package server;
+package test;
 
+import server.*;
 import static org.junit.Assert.*;
 import java.util.*;
-import java.util.Calendar;
 import org.junit.Before;
 import org.junit.Test;
 import static org.mockito.Mockito.*;

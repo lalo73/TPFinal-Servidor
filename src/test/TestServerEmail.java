@@ -1,9 +1,14 @@
-package server;
+package test;
+
 
 import static org.junit.Assert.*;
 import java.util.*;
 import org.junit.Before;
 import org.junit.Test;
+
+import server.ServerEmail;
+import server.ServerEmailAttachment;
+import server.ServerEmailHead;
 import static org.mockito.Mockito.*;
 
 public class TestServerEmail {
@@ -11,6 +16,7 @@ public class TestServerEmail {
 	ServerEmailHead eh;
 	ServerEmail e;
 	
+	@Before 
 	public void setUp(){
 		a = mock(ServerEmailAttachment.class);
 		when(a.getFile()).thenReturn("aFile");

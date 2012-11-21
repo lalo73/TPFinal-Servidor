@@ -2,6 +2,8 @@ package server;
 
 import java.util.*;
 
+import test.CannotFindUserException;
+
 public class Server {
   
 	private ArrayList<UserAccount>users = new ArrayList<UserAccount>();
@@ -40,7 +42,7 @@ public class Server {
 				return u;		
 			}
 		}
-      	throw new Exception ("User doesn't exist");
+      	throw new CannotFindUserException("User doesn't exist");
 	
 	}
 	public ArrayList<ServerEmail> sendEmailWithPOP3(String user, boolean clearList) throws Exception{
@@ -72,6 +74,10 @@ public class Server {
 		 * if exist, this method will add the Email to the list of Emails from the user
 		 */
 		this.findUser(h.getHead().getReciver()).getUserEmail().add(h);
+	}
+	
+	public static void main(String[] args) {
+		System.out.println("yuhh");
 	}
 	
 }

@@ -1,9 +1,16 @@
-package server;
+package test;
 
 import static org.junit.Assert.*;
 import java.util.*;
 import org.junit.Before;
 import org.junit.Test;
+
+import server.Server;
+import server.ServerEmail;
+import server.ServerEmailAttachment;
+import server.ServerEmailHead;
+import server.User;
+import server.UserAccount;
 import static org.mockito.Mockito.*;
 
 public class TestServer {
@@ -56,12 +63,17 @@ public class TestServer {
 	@Test
 	public void testsendEmailWithPOP3() throws Exception {
 		assertEquals(s.sendEmailWithPOP3("Jfflores90@gmail.com",false).get(0),ua.getUserEmail().get(0));
+		try{
+			s.sendEmailWithPOP3("pepito@gmail.com", false);
+		}catch(CannotFindUserException e){
+			
+		}
 	}
 	
 	@Test
 	public void testsendEmailWithIMAP()throws Exception {
-		assertEquals(s.sendEmailWithIMAP("Jfflores90@gmail.com").get(0),eh);
-		
+		//assertEquals(s.sendEmailWithIMAP("Jfflores90@gmail.com").get(0),eh);
+		assertEquals(ua.getUserEmail().size(),null);
 	}
 	
 	@Test

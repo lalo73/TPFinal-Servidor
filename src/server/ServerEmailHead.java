@@ -33,10 +33,10 @@ public class ServerEmailHead  {
 		return reciver;
 	}
 	public ServerEmailHead(String reciver,String subject,Calendar date, String sender) {
-		this.subject = subject;
-		this.date = date;
-		this.sender = sender;
-		this.reciver = reciver;
+		this.setSubject(subject);
+		this.setDate(date);
+		this.setReciver(reciver);
+        this.setSender(sender);
 	}
     
     

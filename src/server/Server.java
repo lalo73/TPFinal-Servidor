@@ -2,7 +2,8 @@ package server;
 
 import java.util.*;
 
-import test.CannotFindUserException;
+import exception.CannotFindUserException;
+
 
 public class Server {
   
@@ -27,9 +28,9 @@ public class Server {
 		this.getUsers().add(u);
 	}
 	
-	@SuppressWarnings("null")
+
 	private ArrayList<ServerEmailHead> headsOfEmails(UserAccount u){
-		ArrayList<ServerEmailHead>h = null;
+		ArrayList<ServerEmailHead>h = new ArrayList<ServerEmailHead>();
 		for (ServerEmail e : u.getUserEmail()){
 			h.add(e.getHead());
 		}
@@ -61,15 +62,15 @@ public class Server {
 		 return    this.headsOfEmails(this.findUser(username));
 		      }
 	
-	public ServerEmail sendEmail(ServerEmailHead h,String user) throws Exception{
+	public ServerEmail sendEmail(ServerEmailHead h,String userName) throws Exception{
 		/* this method must return an Email
 		 * only works with IMAP protocol
 		 */
-		return this.findUser(user).sendEmailComplete(h);
+		return this.findUser(userName).sendEmailComplete(h);
 		
 	}
 	
-	public void recivedAndSend(ServerEmail h) throws Exception{
+	public void reciveAndSend(ServerEmail h) throws Exception{
 		/*this method recive an Email and search in the list of users 
 		 * if exist, this method will add the Email to the list of Emails from the user
 		 */

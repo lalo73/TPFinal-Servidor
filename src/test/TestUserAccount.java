@@ -1,6 +1,7 @@
 package test;
 
 import server.*;
+import exception.CannotFindEmailException;
 import static org.junit.Assert.*;
 import java.util.*;
 import org.junit.Before;
@@ -11,6 +12,7 @@ public class TestUserAccount {
 	
 	ServerEmailAttachment a;
 	ServerEmailHead eh;
+	ServerEmailHead eh2;
 	ServerEmail e;
 	ServerEmail e2;
 	User u;
@@ -32,6 +34,11 @@ public class TestUserAccount {
 		when(eh.getReciver()).thenReturn("Jfflores90@gmail.com");
 		when(eh.getSender()).thenReturn("lalo93@gmail.com");
 		when(eh.getSubject()).thenReturn("I've a question");
+		eh2 = mock(ServerEmailHead.class);
+		when(eh2.getDate()).thenReturn(d);
+		when(eh2.getReciver()).thenReturn("Jfflores90@gmail.com");
+		when(eh2.getSender()).thenReturn("lalo93@gmail.com");
+		when(eh2.getSubject()).thenReturn("I've a question");
 		e = mock(ServerEmail.class);
 		em.add(e);
 		when(e.getBody()).thenReturn("Am I ugly?");
@@ -62,6 +69,11 @@ public class TestUserAccount {
 	@Test
 	public void testsendEmailComplete() throws Exception{
 		assertEquals(ua.sendEmailComplete(eh),e);
+		try{
+			ua.sendEmailComplete(eh2);
+		}catch (CannotFindEmailException e){
+			
+		}
 	}
 
 }

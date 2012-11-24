@@ -2,6 +2,9 @@ package server;
 
 import java.util.*;
 
+import exception.CannotFindEmailException;
+
+
 public class UserAccount {
 	private User userAccount;
 	private ArrayList<ServerEmail> userEmail;
@@ -39,6 +42,6 @@ public class UserAccount {
 				return e;
 			}
 		}
-		throw new Exception("Email doesn't exist");
+		throw new CannotFindEmailException("Email doesn't exist");
 	}
 }

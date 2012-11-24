@@ -1,4 +1,4 @@
-package test;
+package exception;
 
 @SuppressWarnings("serial")
 public class CannotFindUserException extends Exception {

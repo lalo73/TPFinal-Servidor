@@ -5,17 +5,14 @@ import java.util.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import server.Server;
-import server.ServerEmail;
-import server.ServerEmailAttachment;
-import server.ServerEmailHead;
-import server.User;
-import server.UserAccount;
+import exception.CannotFindUserException;
+import server.*;
 import static org.mockito.Mockito.*;
 
 public class TestServer {
 	ServerEmailAttachment a;
 	ServerEmailHead eh;
+	ServerEmailHead eh2;
 	ServerEmail e;
 	ServerEmail e2;
 	User u;
@@ -33,13 +30,17 @@ public class TestServer {
 		when(a.getFile()).thenReturn("hi");
 		when(a.getFileName()).thenReturn("aName");
 		at.add(a);
+		eh2 = mock(ServerEmailHead.class);
+		when(eh2.getDate()).thenReturn(d);
+		when(eh2.getReciver()).thenReturn("Sarasa@gmail.com");
+		when(eh2.getSender()).thenReturn("pepito@gmail.com");
+		when(eh2.getSubject()).thenReturn("Hi"); 
 		eh = mock(ServerEmailHead.class);
 		when(eh.getDate()).thenReturn(d);
 		when(eh.getReciver()).thenReturn("Jfflores90@gmail.com");
 		when(eh.getSender()).thenReturn("lalo93@gmail.com");
 		when(eh.getSubject()).thenReturn("I've a question");
 		e = mock(ServerEmail.class);
-		em.add(e);
 		when(e.getBody()).thenReturn("Am I ugly?");
 		when(e.getHead()).thenReturn(eh);
 		when(e.getAttachment()).thenReturn(at);
@@ -66,26 +67,42 @@ public class TestServer {
 		try{
 			s.sendEmailWithPOP3("pepito@gmail.com", false);
 		}catch(CannotFindUserException e){
-			
+
 		}
 	}
 	
 	@Test
 	public void testsendEmailWithIMAP()throws Exception {
-		//assertEquals(s.sendEmailWithIMAP("Jfflores90@gmail.com").get(0),eh);
-		assertEquals(ua.getUserEmail().size(),null);
+		assertEquals(s.sendEmailWithIMAP("Jfflores90@gmail.com").get(0),eh);
+		try{
+			s.sendEmailWithIMAP("pepito@gmail.com");
+		}catch(CannotFindUserException e){
+			
+		}
 	}
 	
 	@Test
 	public void testsendEmail() throws Exception{
 		s.sendEmail(eh,"Jfflores90@gmail.com");
-		verify(s).sendEmail(eh,"Jfflores90@gmail.com"); 
+		verify(ua).sendEmailComplete(eh);
+		try{
+			s.sendEmail(eh,"pepito@gmail.com" );
+		}catch(CannotFindUserException e){
+			
+		}
 	}
 	
 	@Test
 	public void testreciveAndSend() throws Exception{
-		s.recivedAndSend(e2);
+		s.reciveAndSend(e2);
+		assertTrue(ua.getUserEmail().get(0) == e);
+		assertTrue(ua.getUserEmail().get(1) == e2);	
 		assertTrue(ua.getUserEmail().size() == 2);
+		try{
+			s.reciveAndSend(e);
+		}catch(CannotFindUserException e){	
+			
+		}
 	}
 
 }

@@ -6,14 +6,14 @@ import exception.CannotFindEmailException;
 
 
 public class UserAccount {
-	private User userAccount;
+	private ServerUser userAccount;
 	private ArrayList<ServerEmail> userEmail;
 
-	public User getUserAccount() {
+	public ServerUser getUserAccount() {
 		return userAccount;
 	}
 
-	public void setUserAccount(User user) {
+	public void setUserAccount(ServerUser user) {
 		this.userAccount = user;
 	}
 
@@ -25,7 +25,7 @@ public class UserAccount {
 		this.userEmail = userEmail;
 	}
 
-	public UserAccount(User user) {
+	public UserAccount(ServerUser user) {
 		super();
 		this.userAccount = user;
 		// CREATION OF AN EMPTY EMAIL LIST..

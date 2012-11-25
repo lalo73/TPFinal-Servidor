@@ -37,11 +37,6 @@ public class ServerEmailHead  {
 		this.setDate(date);
 		this.setReciver(reciver);
         this.setSender(sender);
-	}
-    
-    
-    
-    
-    
+	}    
 	
 }

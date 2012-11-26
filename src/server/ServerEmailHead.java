@@ -38,5 +38,5 @@ public class ServerEmailHead  {
 		this.setReciver(reciver);
         this.setSender(sender);
 	}
-    	
+   
 }

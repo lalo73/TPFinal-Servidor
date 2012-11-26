@@ -4,14 +4,15 @@ package test;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
-import server.User;
+
+import server.ServerUser;
 
 public class TestUser {
-	User u;
+	ServerUser  u;
 
 	@Before
 	public void setUp() throws Exception {
-		u = new User("Fede", "isComplicated","Jfflores90@gmail.com");
+		u = new ServerUser ("Fede", "isComplicated","Jfflores90@gmail.com");
 		
 	}
 	@Test

@@ -1,6 +1,6 @@
 package server;
 
-public class User  {
+public class ServerUser  {
     private String name;
     private String password;
     private String userName;
@@ -27,7 +27,7 @@ public class User  {
 	}
 	
 	
-	public User(String name, String password, String userName) {
+	public ServerUser(String name, String password, String userName) {
 		super();
 		this.name = name;
 		this.password = password;

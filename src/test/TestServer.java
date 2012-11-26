@@ -15,7 +15,7 @@ public class TestServer {
 	ServerEmailHead eh2;
 	ServerEmail e;
 	ServerEmail e2;
-	User u;
+	ServerUser  u;
 	UserAccount ua;
 	Server s;
 
@@ -48,7 +48,7 @@ public class TestServer {
 		when(e2.getAttachment()).thenReturn(at);
 		when(e2.getHead()).thenReturn(eh);
 		when(e2.getBody()).thenReturn("Hello");
-		u = mock(User.class);
+		u = mock(ServerUser .class);
 		when(u.getName()).thenReturn("Fede");
 		when(u.getPassword()).thenReturn("is secret");
 		when(u.getUserName()).thenReturn("Jfflores90@gmail.com");

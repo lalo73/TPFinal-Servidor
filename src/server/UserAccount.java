@@ -36,7 +36,7 @@ public class UserAccount {
 		this.getUserEmail().removeAll(this.getUserEmail());
 	}
 
-	public ServerEmail sendEmailComplete(ServerEmailHead h) throws Exception {
+	public ServerEmail sendEmailComplete(ServerEmailHead h) throws CannotFindEmailException {
 		for (ServerEmail e : this.getUserEmail()) {
 			if (e.getHead() == h) {
 				return e;

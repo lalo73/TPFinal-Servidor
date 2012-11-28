@@ -44,8 +44,5 @@ public class ServerEmail  {
 		this.attachment = attachment;
 		this.body = body;
 	}
-	
-	public static void main(String[] args) {
-		System.out.println("hola");
-	}
+
 }

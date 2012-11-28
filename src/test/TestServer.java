@@ -66,6 +66,7 @@ public class TestServer {
 		assertEquals(s.sendEmailWithPOP3("Jfflores90@gmail.com",false).get(0),ua.getUserEmail().get(0));
 		try{
 			s.sendEmailWithPOP3("pepito@gmail.com", false);
+			fail("No levanto la excepcion esperada");
 		}catch(CannotFindUserException e){
 
 		}

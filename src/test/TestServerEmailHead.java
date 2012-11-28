@@ -8,6 +8,7 @@ import java.util.Calendar;
 
 public class TestServerEmailHead {
 	ServerEmailHead eh;
+	ServerEmailHead eh2;
 	Calendar d;
 	
 
@@ -18,6 +19,7 @@ public class TestServerEmailHead {
 		d.set(Calendar.MONTH, 9);
 		d.set(Calendar.DAY_OF_MONTH,30);
 		eh = new ServerEmailHead("Jfflores90@gmail.com","subject",d,"lalo73@gmail.com");
+		eh2 = new ServerEmailHead("Jfflores90@gmail.com","subject",d,"lalo73@gmail.com");
 	}
 
 	@Test
@@ -42,5 +44,10 @@ public class TestServerEmailHead {
 		assertEquals(eh.getDate().get(Calendar.MONTH),9);
 		
 		}
+	
+	@Test
+	public void testIsEquals(){
+		assertTrue(eh.isEquals(eh2));
+	}
    
 }

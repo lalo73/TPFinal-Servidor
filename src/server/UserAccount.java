@@ -38,10 +38,28 @@ public class UserAccount {
 
 	public ServerEmail sendEmailComplete(ServerEmailHead h) throws CannotFindEmailException {
 		for (ServerEmail e : this.getUserEmail()) {
-			if (e.getHead() == h) {
+			if (e.getHead().isEquals(h)) {
 				return e;
 			}
 		}
 		throw new CannotFindEmailException("Email doesn't exist");
 	}
+
+	public ServerEmail searchEmail(ServerEmailHead h) throws Exception {
+			for (ServerEmail s : this.getUserEmail()) {
+			 if (h.isEquals(s.getHead())){
+				 return s;
+			 }
+		}
+			throw new CannotFindEmailException ("Email doesn't exist");	
+	}
+
+	public void deleteEmailByHeader(ServerEmailHead h) throws Exception {
+		this.getUserEmail().remove(this.searchEmail(h));
+	}
+
+	public void deleteEmailByReader(ServerEmail h) throws Exception {
+		    this.getUserEmail().remove(this.searchEmail(h.getHead()));
+			}
+		
 }

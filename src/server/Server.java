@@ -84,4 +84,13 @@ public class Server {
 		this.findUser(h.getHead().getReciver()).getUserEmail().add(h);
 	}
 	
+
+	public void removeEmailByHeader(String userName , ServerEmailHead h) throws Exception{
+		this.findUser(userName).deleteEmailByHeader(h);
+	}
+	
+	public void removeEmailByReader (String userName , ServerEmail h)throws Exception {
+		this.findUser(userName).deleteEmailByReader(h);
+	}
+
 }

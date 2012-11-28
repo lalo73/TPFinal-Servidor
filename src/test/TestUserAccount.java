@@ -17,6 +17,7 @@ public class TestUserAccount {
 	ServerEmail e2;
 	ServerUser  u;
 	UserAccount ua;
+	Calendar d = Calendar.getInstance();
 
 	@Before
 	public void setUp() throws Exception {
@@ -34,6 +35,7 @@ public class TestUserAccount {
 		when(eh.getReciver()).thenReturn("Jfflores90@gmail.com");
 		when(eh.getSender()).thenReturn("lalo93@gmail.com");
 		when(eh.getSubject()).thenReturn("I've a question");
+		when(eh.getDate()).thenReturn(d);
 		eh2 = mock(ServerEmailHead.class);
 		when(eh2.getDate()).thenReturn(d);
 		when(eh2.getReciver()).thenReturn("Jfflores90@gmail.com");
@@ -68,12 +70,13 @@ public class TestUserAccount {
 	
 	@Test
 	public void testsendEmailComplete() throws Exception{
+		assertEquals(ua.getUserEmail().get(0),e);
 		assertEquals(ua.sendEmailComplete(eh),e);
 		try{
 			ua.sendEmailComplete(eh2);
-		}catch (CannotFindEmailException e){
+	       }catch (CannotFindEmailException e){
 			
-		}
+		      }
 	}
 
 }

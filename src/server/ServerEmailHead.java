@@ -38,4 +38,10 @@ public class ServerEmailHead  {
 		this.setReciver(reciver);
         this.setSender(sender);
 	}
+	public boolean isEquals(ServerEmailHead h) {
+		
+		return (this.getSubject() == h.getSubject() && this.getDate() == h.getDate());
+	}
+	
+	
 }

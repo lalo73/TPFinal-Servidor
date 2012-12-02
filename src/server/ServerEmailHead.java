@@ -1,4 +1,7 @@
 package server;
+/**
+ * @Author: Flores Jorge
+ */
 
 import java.util.*;
 
@@ -48,10 +51,9 @@ public class ServerEmailHead {
 		this.setReciver(reciver);
 		this.setSender(sender);
 	}
-	public boolean isEquals(ServerEmailHead h) {
+	@Override
+public boolean equals(Object o) {
 		
-		return (this.getSubject() == h.getSubject() && this.getDate() == h.getDate());
+		return (this.getSubject() == ((ServerEmailHead) o).getSubject() && this.getDate() == ((ServerEmailHead) o).getDate());
 	}
-	
-	
 }

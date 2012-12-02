@@ -15,6 +15,7 @@ public class TestUserAccount {
 	ServerEmailHead eh2;
 	ServerEmail e;
 	ServerEmail e2;
+	ServerEmail e3;
 	ServerUser  u;
 	UserAccount ua;
 	Calendar d = Calendar.getInstance();
@@ -40,7 +41,7 @@ public class TestUserAccount {
 		when(eh2.getDate()).thenReturn(d);
 		when(eh2.getReciver()).thenReturn("Jfflores90@gmail.com");
 		when(eh2.getSender()).thenReturn("lalo93@gmail.com");
-		when(eh2.getSubject()).thenReturn("I've a question");
+		when(eh2.getSubject()).thenReturn("Hello!!");
 		e = mock(ServerEmail.class);
 		em.add(e);
 		when(e.getBody()).thenReturn("Am I ugly?");
@@ -48,8 +49,12 @@ public class TestUserAccount {
 		when(e.getAttachment()).thenReturn(at);
 		e2 = mock(ServerEmail.class);
 		when(e2.getAttachment()).thenReturn(at);
-		when(e2.getHead()).thenReturn(eh);
+		when(e2.getHead()).thenReturn(eh2);
 		when(e2.getBody()).thenReturn("Hello");
+		when(e2.isReaded()).thenReturn(true);
+		e3 = mock(ServerEmail.class);
+		when(e3.isReaded()).thenReturn(false);
+		when(e3.getHead()).thenReturn(eh2);
 		u = mock(ServerUser .class);
 		when(u.getName()).thenReturn("Fede");
 		when(u.getPassword()).thenReturn("is secret");
@@ -74,9 +79,35 @@ public class TestUserAccount {
 		assertEquals(ua.sendEmailComplete(eh),e);
 		try{
 			ua.sendEmailComplete(eh2);
+			fail("Exception not captured");
 	       }catch (CannotFindEmailException e){
 			
 		      }
 	}
-
+	
+	@Test
+	public void testDeleteByReader() throws Exception{
+		ua.getUserEmail().add(e2);
+		assertEquals(ua.getUserEmail().size(),2);
+		ua.deleteEmailByReader(e2);
+		assertEquals(ua.getUserEmail().size(),1);
+		try{
+			ua.deleteEmailByReader(e3);
+			fail("Exception not captured");
+		}catch (CannotFindEmailException e){
+			
+	     }
+   }
+	@Test
+	public void testDeleteByHeader()throws Exception{
+		assertEquals(ua.getUserEmail().size(),1);
+		ua.deleteEmailByHeader(eh);
+		assertEquals(ua.getUserEmail().size(),0);
+		try{
+			ua.deleteEmailByHeader(eh2);
+			fail("Exception not captured");
+		}catch (CannotFindEmailException e){
+			
+		}
+	}
 }

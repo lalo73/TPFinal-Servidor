@@ -1,5 +1,7 @@
 package server;
-
+/**
+ * @author: Flores Jorge
+ */
 import java.util.*;
 
 public class ServerEmail  {
@@ -44,5 +46,16 @@ public class ServerEmail  {
 		this.attachment = attachment;
 		this.body = body;
 	}
-
+	@Override
+	public boolean equals (Object o){
+		if (o == this) {
+			return true;
+		}
+		else { if (!(o instanceof ServerEmail)){
+			return false;
+		    }
+		ServerEmail p = (ServerEmail) (o);
+		return ((this.getHead().getDate() ==  p.getHead().getDate()) && (this.getHead().getSubject() == p.getHead().getSubject()));	
+	   }
+   }
 }

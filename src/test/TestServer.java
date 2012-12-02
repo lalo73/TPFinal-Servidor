@@ -13,8 +13,10 @@ public class TestServer {
 	ServerEmailAttachment a;
 	ServerEmailHead eh;
 	ServerEmailHead eh2;
+	ServerEmailHead eh3;
 	ServerEmail e;
 	ServerEmail e2;
+	ServerEmail e3;
 	ServerUser  u;
 	UserAccount ua;
 	Server s;
@@ -30,11 +32,13 @@ public class TestServer {
 		when(a.getFile()).thenReturn("hi");
 		when(a.getFileName()).thenReturn("aName");
 		at.add(a);
+		eh3 = mock(ServerEmailHead.class);
+		when (eh3.getReciver()).thenReturn("pepepe@gmail.com");
 		eh2 = mock(ServerEmailHead.class);
 		when(eh2.getDate()).thenReturn(d);
-		when(eh2.getReciver()).thenReturn("Sarasa@gmail.com");
+		when(eh2.getReciver()).thenReturn("Jfflores90@gmail.com");
 		when(eh2.getSender()).thenReturn("pepito@gmail.com");
-		when(eh2.getSubject()).thenReturn("Hi"); 
+		when(eh2.getSubject()).thenReturn("Hi");
 		eh = mock(ServerEmailHead.class);
 		when(eh.getDate()).thenReturn(d);
 		when(eh.getReciver()).thenReturn("Jfflores90@gmail.com");
@@ -46,8 +50,10 @@ public class TestServer {
 		when(e.getAttachment()).thenReturn(at);
 		e2 = mock(ServerEmail.class);
 		when(e2.getAttachment()).thenReturn(at);
-		when(e2.getHead()).thenReturn(eh);
+		when(e2.getHead()).thenReturn(eh2);
 		when(e2.getBody()).thenReturn("Hello");
+		e3 = mock(ServerEmail.class);
+		when(e3.getHead()).thenReturn(eh3);
 		u = mock(ServerUser .class);
 		when(u.getName()).thenReturn("Fede");
 		when(u.getPassword()).thenReturn("is secret");
@@ -66,7 +72,7 @@ public class TestServer {
 		assertEquals(s.sendEmailWithPOP3("Jfflores90@gmail.com",false).get(0),ua.getUserEmail().get(0));
 		try{
 			s.sendEmailWithPOP3("pepito@gmail.com", false);
-			fail("No levanto la excepcion esperada");
+			fail("Exception not captured ");
 		}catch(CannotFindUserException e){
 
 		}
@@ -77,6 +83,7 @@ public class TestServer {
 		assertEquals(s.sendEmailWithIMAP("Jfflores90@gmail.com").get(0),eh);
 		try{
 			s.sendEmailWithIMAP("pepito@gmail.com");
+			fail("Exception not captured");
 		}catch(CannotFindUserException e){
 			
 		}
@@ -88,6 +95,7 @@ public class TestServer {
 		verify(ua).sendEmailComplete(eh);
 		try{
 			s.sendEmail(eh,"pepito@gmail.com" );
+			fail("Exception not captured");
 		}catch(CannotFindUserException e){
 			
 		}
@@ -100,7 +108,8 @@ public class TestServer {
 		assertTrue(ua.getUserEmail().get(1) == e2);	
 		assertTrue(ua.getUserEmail().size() == 2);
 		try{
-			s.reciveAndSend(e);
+			s.reciveAndSend(e3);
+			fail("Exception not captured");
 		}catch(CannotFindUserException e){	
 			
 		}

@@ -1,5 +1,7 @@
 package server;
-
+/**
+ * @Author: Flores Jorge
+ */
 import java.util.*;
 
 import exception.CannotFindEmailException;
@@ -31,6 +33,9 @@ public class Server {
 	}
 
 	private ArrayList<ServerEmailHead> headsOfEmails(UserAccount u) {
+		/*
+		 * this method must return all head of Emails from an user
+		 */
 		ArrayList<ServerEmailHead> h = new ArrayList<ServerEmailHead>();
 		for (ServerEmail e : u.getUserEmail()) {
 			h.add(e.getHead());
@@ -39,6 +44,9 @@ public class Server {
 	}
 
 	private UserAccount findUser(String userName) throws CannotFindUserException {
+		/*
+		 *  search an User 
+		 */
 		for (UserAccount u : this.getUsers()) {
 			if (u.getUserAccount().getUserName() == userName) {
 				return u;
@@ -69,7 +77,7 @@ public class Server {
 
 	public ServerEmail sendEmail(ServerEmailHead h, String userName)
 			throws CannotFindEmailException, CannotFindUserException {
-		/*
+		/* 
 		 * this method must return an Email only works with IMAP protocol
 		 */
 		return this.findUser(userName).sendEmailComplete(h);
@@ -86,10 +94,17 @@ public class Server {
 	
 
 	public void removeEmailByHeader(String userName , ServerEmailHead h) throws Exception{
+		/*
+		 * if the Email was readed.
+		 *  this method must delete the email
+		 */
 		this.findUser(userName).deleteEmailByHeader(h);
 	}
 	
 	public void removeEmailByReader (String userName , ServerEmail h)throws Exception {
+		/*
+		 * this method delete an email from an user
+		 */
 		this.findUser(userName).deleteEmailByReader(h);
 	}
 

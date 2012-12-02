@@ -1,5 +1,9 @@
 package server;
-
+/**
+ * 
+ * @author: Flores Jorge
+ *
+ */
 public class ServerEmailAttachment {
 	String fileName;
 	String file;

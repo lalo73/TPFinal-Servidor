@@ -1,5 +1,9 @@
 package server;
-
+/**
+ * 
+ * @Author:Flores Jorge
+ *
+ */
 public class ServerUser  {
     private String name;
     private String password;
